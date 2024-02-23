@@ -48,7 +48,7 @@ The DLL must have 4 input values:
 
 ## DLL Return Values
 The DLL will return various error values based on numerous factors. It is up to your application how to handle them.
-
+```
 0 - no error
 1 - expired
 2 - wrong customerId
@@ -58,7 +58,7 @@ The DLL will return various error values based on numerous factors. It is up to 
 6 - billing attempt not found... likely expired
 8 - File Error
 9 - other error
-
+```
 ## Other Notes
 If you are planning on using other apps sold from TradingApp.Store, you must first uninstall the vendor installation and delete the TradingAppStore folder located at C:/ProgramData/ . This will insure that there will be no conflict between the license generated whenever you buy a real product and the debug license used for testing.
 
