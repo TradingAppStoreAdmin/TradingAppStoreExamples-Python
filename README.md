@@ -33,3 +33,11 @@ print(f"Error Code from Username Authorization: {error_username_auth}")
 if error_machine_auth == 0 and error_username_auth == 0:
     print("Access Granted")
 ```
+
+## DLL Inputs
+The DLL must have 4 input values:
+* string customerID :   username of the user
+* string productID :    SKU of the product to be checked.
+* bool debug :          set to True if you are testing to use Debug licenses distributed by the vendor portal. SET TO FALSE FOR RELEASE OR ELSE ANYONE WILL HAVE ACCESS TO YOUR PRODUCT
+* bool TASauth :        Enable this to use our system for user authorization via hardware identifiers. Otherwise, you can use another system like Username / Password
+
