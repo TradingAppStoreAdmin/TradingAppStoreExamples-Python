@@ -7,7 +7,7 @@ Go to vendors.tradingapp.store, create a vendor account, and click the "Create L
 
 ## Implementation
 Below is a python implementation that calls the UserHasPermission function of the TradingAppStore DLL:
-```
+```python
 from ctypes import *
 
 # Ensure the chosen architecture matches the Python interpreter
