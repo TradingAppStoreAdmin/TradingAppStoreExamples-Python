@@ -36,7 +36,7 @@ If your software requires a username, you can put yours here. This value will be
 Unique self-created product identifier that you will use in your script while accessing the DLL.
 
 ### Download MSI:
-Press this to download a copy of the 'TradingApp.Store License Manager' that is master-keyed to this specific product and specifically to your TradeStation customer number.  This provides you, the Vendor, the ability to test the integrations of your products with our DLLs.  After installing this MSI, launch the TradingApp.Store license manager application to see the generated license.  
+Press this to download a copy of the 'TradingApp.Store License Manager' that is master-keyed to this specific product and specifically to your platform customer number.  This provides you, the Vendor, the ability to test the integrations of your products with our DLLs.  After installing this MSI, launch the TradingApp.Store license manager application to see the generated license.  
 
 
 ![TradingApp.Store License Manager](licensemanager_screenshot.png)  
