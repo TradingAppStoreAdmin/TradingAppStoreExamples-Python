@@ -64,7 +64,7 @@ error_machine_auth = dll.UseMachineAuthorization(product_id, debug_mode)
 print(f"Error Code from Machine Authorization: {error_machine_auth}")
 
 # Process the returned errors accordingly
-if error_machine_auth == 0 and error_username_auth == 0:
+if error_machine_auth == 0:
     print("Access Granted")
 ```
 
