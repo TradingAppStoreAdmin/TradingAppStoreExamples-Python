@@ -99,11 +99,11 @@ The DLL will return various error values based on numerous factors. It is up to 
 ## Finishing Up
 Go back to the Vendor Portal to complete your product setup.
 
-### Sales Information - Set Price:
-This is the price per period for the subscription term of the product.  Revenue splits are explained in the Vendor Policy (https://tradingapp.store/pages/vendor-policy).
-
 ### Upload Software Here:
 Once your product is successfully integrated into our permissions system, take the product out of debug mode (see bool debug above), and export your project.  If you have accompanying files, workspaces, symbol lists, etc, zip everything into one file, and then upload it here.  This is what will be distributed to end-users at the time of purchase or free trial.
+
+### Sales Information - Set Price:
+This is the price per period for the subscription term of the product.  Revenue splits are explained in the Vendor Policy (https://tradingapp.store/pages/vendor-policy).
 
 ### Send for approval:
 Click here to send this listing for approval by TAS site moderators.  You will be notified by email upon acceptance or rejection.
