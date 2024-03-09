@@ -55,20 +55,13 @@ from ctypes import *
 dll_path = "C:\\ProgramData\\TradingAppStore\\x64\\TASlicense.dll" #if using x86 use "C:\\ProgramData\\TradingAppStore\\x86\\TASlicense.dll"
 dll = cdll.LoadLibrary(dll_path)
 
-# Define customer and product information
-customer_id = b"Python_App-MY_PLATFORM_USERNAME"
+# Define product information
 product_id = b"MY_PRODUCT_SKU"
 debug_mode = True
-tas_auth_enabled = True
 
 # Perform user authentication using TAS machine authorization
-error_machine_auth = dll.UserHasPermission(customer_id, product_id, debug_mode, tas_auth_enabled)
+error_machine_auth = dll.UseMachineAuthorization(product_id, debug_mode)
 print(f"Error Code from Machine Authorization: {error_machine_auth}")
-
-# If you prefer to use the username embedded into the license, set TASauth to False
-tas_auth_enabled = False
-error_username_auth = dll.UserHasPermission(customer_id, product_id, debug_mode, tas_auth_enabled)
-print(f"Error Code from Username Authorization: {error_username_auth}")
 
 # Process the returned errors accordingly
 if error_machine_auth == 0 and error_username_auth == 0:
@@ -77,10 +70,8 @@ if error_machine_auth == 0 and error_username_auth == 0:
 
 ## DLL Inputs
 The DLL must have 4 input values:
-* string customerID :   username of the user
 * string productID :    SKU of the product to be checked.
 * bool debug :          set to True if you are testing to use Debug licenses distributed by the vendor portal. SET TO FALSE FOR RELEASE OR ELSE ANYONE WILL HAVE ACCESS TO YOUR PRODUCT
-* bool TASauth :        Enable this to use our system for user authorization via hardware identifiers. Otherwise, you can use another system like Username / Password
 
 ## DLL Return Values
 The DLL will return various error values based on numerous factors. It is up to your application how to handle them.
