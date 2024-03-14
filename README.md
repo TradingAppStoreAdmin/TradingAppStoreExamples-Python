@@ -59,6 +59,8 @@ import requests
 dll_path = "C:\\ProgramData\\TradingAppStore\\x64\\TASlicense.dll" #if using x86 use "C:\\ProgramData\\TradingAppStore\\x86\\TASlicense.dll"
 
 #Make sure that the DLL has not been tampered with.
+#We offer a webhook that takes in the target DLL as an attachment and
+#confirms that it hasn't been modified, further protecting your software.
 dllValid = False
 with open(dll_path, "rb") as infile:
     files = {"file" : infile}
