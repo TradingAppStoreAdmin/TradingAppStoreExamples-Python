@@ -53,9 +53,24 @@ You may download the installer for TradingAppStore from the vendor portal whenev
 Below is a Python implementation that calls the UserHasPermission function of the TradingAppStore DLL:
 ```python
 from ctypes import *
+import requests
 
 # Ensure the chosen architecture matches the Python interpreter
 dll_path = "C:\\ProgramData\\TradingAppStore\\x64\\TASlicense.dll" #if using x86 use "C:\\ProgramData\\TradingAppStore\\x86\\TASlicense.dll"
+
+#Make sure that the DLL has not been tampered with.
+dllValid = False
+with open(dll_path, "rb") as infile:
+    files = {"file" : infile}
+    response = requests.post("https://tradingstoreapi.ngrok.app/verifyDLL", files=files)
+    if response.status_code == 200:
+        dllValid = True
+        print("DLL accepted")
+    elif response.status_code == 401:
+        print("DLL has been tampered with.")
+    else:
+        print("Error. Response code: " + str(response.status_code))
+
 dll = cdll.LoadLibrary(dll_path)
 
 # Define product information
