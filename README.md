@@ -73,19 +73,20 @@ with open(dll_path, "rb") as infile:
     else:
         print("Error. Response code: " + str(response.status_code))
 
-dll = cdll.LoadLibrary(dll_path)
-
-# Define product information
-product_id = b"MY_PRODUCT_SKU"
-debug_mode = True
-
-# Perform user authentication using TAS machine authorization
-error_machine_auth = dll.UseMachineAuthorization(product_id, debug_mode)
-print(f"Error Code from Machine Authorization: {error_machine_auth}")
-
-# Process the returned errors accordingly
-if error_machine_auth == 0:
-    print("Access Granted")
+if dllValid:
+    dll = cdll.LoadLibrary(dll_path)
+    
+    # Define product information
+    product_id = b"MY_PRODUCT_SKU"
+    debug_mode = True
+    
+    # Perform user authentication using TAS machine authorization
+    error_machine_auth = dll.UseMachineAuthorization(product_id, debug_mode)
+    print(f"Error Code from Machine Authorization: {error_machine_auth}")
+    
+    # Process the returned errors accordingly
+    if error_machine_auth == 0:
+        print("Access Granted")
 ```
 
 ## DLL Inputs
