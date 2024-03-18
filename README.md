@@ -69,7 +69,7 @@ json = {
    "magic_number" : magic
 }
 
-#now, let's send that magic number to our server to be verified
+#Now, let's send that magic number to our server to be verified
 response = requests.post("https://tradingstoreapi.ngrok.app/verifyDLL", json=json)
 if response.status_code == 200:
    dllValid = True
