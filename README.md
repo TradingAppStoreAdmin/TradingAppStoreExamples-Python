@@ -55,26 +55,34 @@ Below is a Python implementation that calls the UserHasPermission function of th
 from ctypes import *
 import requests
 
-# Ensure the chosen architecture matches the Python interpreter
-dll_path = "C:\\ProgramData\\TradingAppStore\\x64\\TASlicense.dll" #if using x86 use "C:\\ProgramData\\TradingAppStore\\x86\\TASlicense.dll"
+"""Before you use the dlls, you should first make sure that they have not
+   been tampered with."""
+util_dll_path = "C:\\ProgramData\\TradingAppStore\\x64\\Utils.dll"
+dll = cdll.LoadLibrary(util_dll_path)
 
-#Make sure that the DLL has not been tampered with.
-#We offer a webhook that takes in the target DLL as an attachment and
-#confirms that it hasn't been modified, further protecting your software.
-dllValid = False
-with open(dll_path, "rb") as infile:
-    files = {"file" : infile}
-    response = requests.post("https://tradingstoreapi.ngrok.app/verifyDLL", files=files)
-    if response.status_code == 200:
-        dllValid = True
-        print("DLL accepted")
-    elif response.status_code == 401:
-        print("DLL has been tampered with.")
-    else:
-        print("Error. Response code: " + str(response.status_code))
+#This gets a one-time-use magic number from a utility dll
+dll.GetMagicNumber()
+magic = ""
+with open("C:\\ProgramData\\TradingAppStore\\temp\\magic.txt", "r") as infile:
+   magic = infile.read()
+json = {
+   "magic_number" : magic
+}
 
+#now, let's send that magic number to our server to be verified
+response = requests.post("https://tradingstoreapi.ngrok.app/verifyDLL", json=json)
+if response.status_code == 200:
+   dllValid = True
+   print("DLL accepted")
+elif response.status_code == 401:
+   print("DLL has been tampered with.")
+else:
+   print(f"Error: {response.status_code}")
+
+"""After verifying the DLLs, you can safely use them to authorize your customers."""
 if dllValid:
-    dll = cdll.LoadLibrary(dll_path)
+    auth_dll_path = "C:\\ProgramData\\TradingAppStore\\x64\\TASlicense.dll"
+    dll = cdll.LoadLibrary(auth_dll_path)
     
     # Define product information
     product_id = b"MY_PRODUCT_SKU"
