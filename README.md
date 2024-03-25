@@ -49,6 +49,11 @@ The DLL will automatically detect a license in the TradingAppStore/licenses fold
 The TradingAppStore DLL also offers a hardware authorization option that only allows a certain number of devices to access one instance of your product. This adds an additional layer of security by preventing copies of a DLL / product from gaining permission.
 You may download the installer for TradingAppStore from the vendor portal whenever you are in the process of creating a listing. All licenses created from the vendor portal are tagged with a “Debug” flag, so they will not have any functionality in release mode. Thus, BE SURE TO CHANGE THE DEBUG FLAG TO FALSE AFTER COMPLETION OF TESTING PHASES.
 
+## DLL Inputs
+The DLL must have 2 input values:
+* string productID :    SKU of the product that was self generated above.
+* bool debug :          set to True if you are testing to use Debug licenses distributed by the vendor portal. SET TO FALSE FOR RELEASE OR ELSE ANYONE WILL HAVE ACCESS TO YOUR PRODUCT!
+  
 ## Implementation
 Below is a Python implementation that calls the UserHasPermission function of the TradingAppStore DLL:
 ```python
@@ -97,11 +102,6 @@ if dllValid:
     if error_machine_auth == 0:
         print("Access Granted")
 ```
-
-## DLL Inputs
-The DLL must have 2 input values:
-* string productID :    SKU of the product that was self generated above.
-* bool debug :          set to True if you are testing to use Debug licenses distributed by the vendor portal. SET TO FALSE FOR RELEASE OR ELSE ANYONE WILL HAVE ACCESS TO YOUR PRODUCT
 
 ## DLL Return Values
 The DLL will return various error values based on numerous factors. It is up to your application how to handle them.
